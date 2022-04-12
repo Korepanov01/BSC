@@ -1,0 +1,17 @@
+﻿<Window x:Class="OPDT_CW.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OPDT_CW"
+        mc:Ignorable="d"
+        Title="MainWindow" ResizeMode="NoResize" Width="1280" Height="720">
+    <Grid>
+        <TextBlock HorizontalAlignment="Center" Margin="0,10,0,0" Text="ВЫБОР ТАБЛИЦЫ ДЕНЕЖНОГО ПОТОКА" VerticalAlignment="Top" FontSize="24" TextAlignment="Center"/>
+        <Border BorderBrush="Black" BorderThickness="1"  Margin="10,47,10,51">
+            <DataGrid x:Name="ExcelTable" ItemsSource="{Binding}" IsReadOnly="True"/>
+        </Border>
+        <Button Content="Выбрать файл" FontSize="24" Background="White" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,86,10" Height="36" Width="159" Click="ChooseFileButton_Click"/>
+        <Button x:Name="NextButton" Content="Далее" FontSize="24" Background="White" VerticalAlignment="Bottom" HorizontalAlignment="Right"  Margin="10" Height="36" Width="71" IsEnabled="False" Click="NextButton_Click"/>
+    </Grid>
+</Window>
