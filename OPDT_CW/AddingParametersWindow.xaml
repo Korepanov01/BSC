@@ -1,0 +1,124 @@
+﻿<Window x:Class="BSC.AddingParametersWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BSC"
+        mc:Ignorable="d"
+        Title="MainWindow" ResizeMode="NoResize" Width="1280" Height="720">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="ВВЕДЕНИЕ ПАРАМЕТРОВ" VerticalAlignment="Center" FontSize="24"/>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Border BorderBrush="Black" BorderThickness="1" Padding="10" Margin="10" Grid.Row="0" Grid.Column="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" FontSize="24">Финансы</TextBlock>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox x:Name="FinanceParameterName" Grid.Column="0" FontSize="14"></TextBox>
+                        <TextBox x:Name="FinanceParameterValue" Grid.Column="1" FontSize="14"></TextBox>
+                        <Button x:Name="addFinanceParameterButton" Grid.Column="2" FontSize="14" Background="White" Click="AddFinanceParameterButton_Click">Добавить</Button>
+                        <Button x:Name="deleteFinanceParameterButton" Grid.Column="3" FontSize="14" Background="White" Click="DeleteFinanceParameterButton_Click">Удалить</Button>
+                    </Grid>
+                    <ListBox x:Name="FinanceParametersListBox" Grid.Row="1" FontSize="14"></ListBox>
+                </Grid>
+            </Border>
+
+            <Border BorderBrush="Black" BorderThickness="1" Padding="10" Margin="10" Grid.Row="0" Grid.Column="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" FontSize="24">Клиенты</TextBlock>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox x:Name="ClientsParameterName" Grid.Column="0" FontSize="14"></TextBox>
+                        <TextBox x:Name="ClientsParameterValue" Grid.Column="1" FontSize="14"></TextBox>
+                        <Button x:Name="addClientsParameterButton" Grid.Column="2" FontSize="14" Background="White" Click="AddClientsParameterButton_Click">Добавить</Button>
+                        <Button x:Name="deleteClientsParameterButton" Grid.Column="3" FontSize="14" Background="White" Click="DeleteClientsParameterButton_Click">Удалить</Button>
+                    </Grid>
+                    <ListBox x:Name="ClientsParametersListBox" Grid.Row="1" FontSize="14"></ListBox>
+                </Grid>
+            </Border>
+
+            <Border BorderBrush="Black" BorderThickness="1" Padding="10" Margin="10" Grid.Row="1" Grid.Column="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" FontSize="24">Внутренние процессы</TextBlock>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox x:Name="InternalParameterName" Grid.Column="0" FontSize="14"></TextBox>
+                        <TextBox x:Name="InternalParameterValue" Grid.Column="1" FontSize="14"></TextBox>
+                        <Button x:Name="addInternalParameterButton" Grid.Column="2" FontSize="14" Background="White" Click="AddInternalParameterButton_Click">Добавить</Button>
+                        <Button x:Name="вудуеуInternalParameterButton" Grid.Column="3" FontSize="14" Background="White" Click="DeleteInternalParameterButton_Click">Удалить</Button>
+                    </Grid>
+                    <ListBox x:Name="InternalParametersListBox" Grid.Row="1" FontSize="14"></ListBox>
+                </Grid>
+            </Border>
+
+            <Border BorderBrush="Black" BorderThickness="1" Padding="10" Margin="10" Grid.Row="1" Grid.Column="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" FontSize="24">Обучение и рост</TextBlock>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox x:Name="EducationParameterName" Grid.Column="0" FontSize="14"></TextBox>
+                        <TextBox x:Name="EducationParameterValue" Grid.Column="1" FontSize="14"></TextBox>
+                        <Button x:Name="addEducationParameterButton" Grid.Column="2" FontSize="14" Background="White" Click="AddEducationParameterButton_Click">Добавить</Button>
+                        <Button x:Name="deleteEducationParameterButton" Grid.Column="3" FontSize="14" Background="White" Click="DeleteEducationParameterButton_Click">Удалить</Button>
+                    </Grid>
+                    <ListBox x:Name="EducationParametersListBox" Grid.Row="1" FontSize="14"></ListBox>
+                </Grid>
+            </Border>
+        </Grid>
+        <Button Grid.Row="2" x:Name="NextButton" Content="Далее" FontSize="24" Background="White" VerticalAlignment="Center" HorizontalAlignment="Right" Height="36" Width="71" IsEnabled="True" Click="NextButton_Click"/>
+    </Grid>
+</Window>

@@ -7,30 +7,35 @@ using Newtonsoft;
 using System.IO;
 using System.Text;
 using System.Diagnostics;
+using System.Windows.Media;
+using System.Runtime.Serialization.Formatters.Binary;
 
-namespace OPDT_CW;
+namespace BSC;
 
-public partial class TreeWindow
+public partial class TreeConstructorWindow
 {
-    private readonly Dictionary<string, float> _elasticityCoefficients;
+    private readonly List<Parameter>[] _parameters;
 
-    public TreeWindow(Dictionary<string, float> elasticityCoefficients)
+    public TreeConstructorWindow(List<Parameter>[] parameters)
     {
-        _elasticityCoefficients = elasticityCoefficients;
+        _parameters = parameters;
 
         InitializeComponent();
     }
 
     private void Window_Loaded(object sender, RoutedEventArgs e)
     {
-        foreach (var elasticityCoefficient in _elasticityCoefficients)
+        for (var i = 0; i < _parameters.Length; i++)
         {
-            var listBoxItem = new ListBoxItem
+            foreach (var parameter in _parameters[i])
             {
-                Content = $"{elasticityCoefficient.Key} ({Math.Round(elasticityCoefficient.Value, 2)})",
-                Tag = elasticityCoefficient
-            };
-            ParametersListBox.Items.Add(listBoxItem);
+                var listBoxItem = new ListBoxItem
+                {
+                    Content = $"{parameter.Name} ({Math.Round(parameter.Value, 2)}) [{parameter.ParameterType}]",
+                    Tag = parameter
+                };
+                ParametersListBox.Items.Add(listBoxItem);
+            }
         }
     }
 
@@ -42,18 +47,24 @@ public partial class TreeWindow
             return;
         }
 
-        var parameters = new Dictionary<string, float>();
+        var parameters = new[] 
+        { 
+            new List<Parameter>(), 
+            new List<Parameter>(),
+            new List<Parameter>(),
+            new List<Parameter>(),
+            new List<Parameter>() 
+        };
         foreach (var selectedItem in ParametersListBox.SelectedItems)
         {
-            var (key, value) = (KeyValuePair<string, float>) ((ListBoxItem) selectedItem).Tag;
-            parameters.Add(key, value);
+            var parameter = (Parameter)((ListBoxItem)selectedItem).Tag;
+            parameters[(int)parameter.ParameterType].Add(parameter);
         }
-        var riskLevel = parameters.Sum(parameter => parameter.Value);
 
         var treeViewItem = new TreeViewItem
         {
-            Header = $"{NodeNameTextBox.Text}" + (parameters.Keys.Count != 0 ? $"\n[{string.Join(",\n", parameters.Keys)}]" : ""),
-            Tag = new Node(NodeNameTextBox.Text, parameters, riskLevel)
+            Header = NodeNameTextBox.Text,
+            Tag = new Node(NodeNameTextBox.Text, parameters)
         };
 
         if (TreeTreeView.SelectedItem == null)
@@ -62,7 +73,7 @@ public partial class TreeWindow
         }
         else
         {
-            ((TreeViewItem) TreeTreeView.SelectedItem).Items.Add(treeViewItem);
+            ((TreeViewItem)TreeTreeView.SelectedItem).Items.Add(treeViewItem);
         }
 
         NodeNameTextBox.Text = "";
@@ -79,8 +90,8 @@ public partial class TreeWindow
 
         var result = MessageBox.Show("Вы уверены?", "Удалить узел", MessageBoxButton.YesNo);
         if (result != MessageBoxResult.Yes) return;
-        
-        var selectedItem = (TreeViewItem) TreeTreeView.SelectedItem;
+
+        var selectedItem = (TreeViewItem)TreeTreeView.SelectedItem;
         if (selectedItem.Parent is TreeView)
         {
             TreeTreeView.Items.Remove(selectedItem);
@@ -94,15 +105,15 @@ public partial class TreeWindow
     private void ShowTreeButton_Click(object sender, RoutedEventArgs e)
     {
         var nodes = new List<Node>();
-        var edges = new List<(int, int)>();
-        int nodeIndex = -1;
+        var edges = new List<Edge>();
+        var nodeIndex = -1;
 
         void CalcNodesAndEdges(int parentNodeIndex, ItemCollection itemCollection)
         {
             var index = nodeIndex++;
             if (index != -1 && parentNodeIndex != -1)
             {
-                edges.Add((parentNodeIndex, index));
+                edges.Add(new Edge(parentNodeIndex, index));
             }
             foreach (var item in itemCollection)
             {
@@ -125,5 +136,40 @@ public partial class TreeWindow
         }
 
         Process.Start("TreeDrawer.exe");
+    }
+
+    private void TreeTreeView_MouseRightButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+        ((TreeViewItem)TreeTreeView.SelectedItem).IsSelected = false;
+    }
+
+    private void SaveTreeButton_Click(object sender, RoutedEventArgs e)
+    {
+        var binaryFormatter = new BinaryFormatter();
+        using (var fileStream = new FileStream("tree.tree", FileMode.Create))
+        {
+            binaryFormatter.Serialize(fileStream, TreeTreeView.Items);
+        }
+    }
+
+    private void LoadTreeButton_Click(object sender, RoutedEventArgs e)
+    {
+        var fileDialog = new Microsoft.Win32.OpenFileDialog
+        {
+            Filter = "tree (*.tree)|*.tree"
+        };
+
+        var result = fileDialog.ShowDialog();
+
+        if (result is not true) return;
+
+        ItemCollection itemCollection; 
+
+        var binaryFormatter = new BinaryFormatter();
+        using(var fileStream = new FileStream(fileDialog.FileName, FileMode.Open))
+        {
+            itemCollection = (ItemCollection)binaryFormatter.Deserialize(fileStream);
+        }
+        TreeTreeView.ItemsSource = itemCollection;
     }
 }

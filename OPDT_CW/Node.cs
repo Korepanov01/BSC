@@ -1,17 +1,15 @@
 ﻿using System.Collections.Generic;
 
-namespace OPDT_CW;
+namespace BSC;
 
 internal struct Node
 {
     public string Description { get; }
-    public Dictionary<string, float> Parameters { get; }
-    public float RiskLevel { get; }
+    public List<Parameter>[] Parameters { get; }
 
-    public Node(string description, Dictionary<string, float> parameters, float riskLevel)
+    public Node(string description, List<Parameter>[] parameters)
     {
         Description = description;
         Parameters = parameters;
-        RiskLevel = riskLevel;
     }
 }

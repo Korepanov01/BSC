@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using BSC;
 using IronXL;
 
-namespace OPDT_CW
+namespace BSC
 {
     public partial class MainWindow
     {
@@ -53,7 +54,7 @@ namespace OPDT_CW
         {
             Hide();
             
-            new TreeWindow(CalcElasticityCoefficients()).ShowDialog();
+            new AddingParametersWindow(CalcNpvParameters()).ShowDialog();
             
             Show();
         }
@@ -77,9 +78,9 @@ namespace OPDT_CW
             return cashFlows.Sum();
         }
 
-        private Dictionary<string, float> CalcElasticityCoefficients()
+        private List<Parameter> CalcNpvParameters()
         {
-            var elasticityCoefficients = new Dictionary<string, float>();
+            var npvParameters = new List<Parameter>();
             
             var npv = CalcNpv(_parameters);
 
@@ -91,12 +92,12 @@ namespace OPDT_CW
                 _parameters[paramName] = newValues;
                 var newNpv = CalcNpv(_parameters);
                 var dNpv = Math.Abs(npv - newNpv) / Math.Abs(npv / 100);
-                elasticityCoefficients.Add(paramName, (float)dNpv / 20);
+                npvParameters.Add(new Parameter(paramName, (float)dNpv / 20, ParameterType.Npv));
                 
                 _parameters[paramName] = oldValues;
             }
 
-            return elasticityCoefficients;
+            return npvParameters;
         }
     }
 }
