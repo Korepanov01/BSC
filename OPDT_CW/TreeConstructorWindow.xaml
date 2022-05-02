@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:OPDT_CW"
         mc:Ignorable="d"
-        Title="TrieWindow" ResizeMode="NoResize" Width="1280" Height="720" Loaded="Window_Loaded">
+        Title="Создание дерева" ResizeMode="NoResize" Width="1280" Height="720" Loaded="Window_Loaded">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
@@ -46,9 +46,7 @@
                     <Button FontSize="20" x:Name="DeleteNodeButton" Grid.Row="1" Width="130" Height="40" Background="White" VerticalAlignment="Center" HorizontalAlignment="Right" Click="DeleteNodeButton_Click">Удалить узел</Button>
                 </Grid>
             </Border>
-        </Grid>
-        <!--<Button Grid.Row="2" FontSize="20" x:Name="SaveTreeButton" Width="170" Height="40" Background="White" VerticalAlignment="Center" HorizontalAlignment="Left" Click="SaveTreeButton_Click">Сохранить дерево</Button>
-        <Button Grid.Row="2" FontSize="20" x:Name="LoadTreeButton" Width="170" Height="40" Background="White" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="180, 0, 0, 0" Click="LoadTreeButton_Click">Загрузить дерево</Button>-->
-        <Button Grid.Row="2" FontSize="20" x:Name="ShowTreeButton" Width="170" Height="40" Background="White" VerticalAlignment="Center" HorizontalAlignment="Right" Click="ShowTreeButton_Click">Показать дерево</Button>
+        </Grid>        
+        <Button Grid.Row="2" FontSize="20" x:Name="ShowTreeButton" Width="310" Height="40" Background="White" VerticalAlignment="Center" HorizontalAlignment="Right" Click="ShowTreeButton_Click">Показать дерево и продолжить</Button>
     </Grid>
 </Window>

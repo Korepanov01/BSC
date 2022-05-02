@@ -104,6 +104,7 @@ public partial class TreeConstructorWindow
 
     private void ShowTreeButton_Click(object sender, RoutedEventArgs e)
     {
+        var leaves = new List<Node>();
         var nodes = new List<Node>();
         var edges = new List<Edge>();
         var nodeIndex = -1;
@@ -119,7 +120,14 @@ public partial class TreeConstructorWindow
             {
                 var treeViewItem = (TreeViewItem)item;
 
-                nodes.Add((Node)treeViewItem.Tag);
+                var node = (Node)treeViewItem.Tag;
+
+                nodes.Add(node);
+
+                if(treeViewItem.Items.Count == 0)
+                {
+                    leaves.Add(node);
+                }
 
                 CalcNodesAndEdges(index, treeViewItem.Items);
             }
@@ -136,6 +144,10 @@ public partial class TreeConstructorWindow
         }
 
         Process.Start("TreeDrawer.exe");
+
+        Hide();
+        new NetConstructor(leaves).ShowDialog();
+        Show();
     }
 
     private void TreeTreeView_MouseRightButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)

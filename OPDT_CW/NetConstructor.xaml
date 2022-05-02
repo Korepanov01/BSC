@@ -1,0 +1,47 @@
+﻿<Window x:Class="BSC.NetConstructor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BSC"
+        mc:Ignorable="d"
+        Title="Создание сети" ResizeMode="NoResize" Width="1280" Height="720">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" VerticalAlignment="Center" Text="СОЗДАНИЕ СЕТИ" FontSize="24" TextAlignment="Center"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Border BorderBrush="Black" BorderThickness="1" Padding="10" Grid.Column="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+                    <ListBox Grid.Row="0" x:Name="NetConnectionsListBox"  FontSize="14" MouseRightButtonDown="NetConnectionsListBox_MouseRightButtonDown"/>
+                    <Button FontSize="20" x:Name="DeleteNetConnection" Grid.Row="1" Width="140" Height="40" Background="White" VerticalAlignment="Center" HorizontalAlignment="Right" Click="DeleteNetConnection_Click">Удалить связь</Button>
+                </Grid>
+            </Border>
+            
+            <Border BorderBrush="Black" BorderThickness="1" Padding="10" Grid.Column="1" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" TextAlignment="Center" FontSize="20" VerticalAlignment="Center" Text="Создать связь"/>
+                    <ListBox Grid.Row="1" FontSize="14" x:Name="LeavesListBox" SelectionMode="Multiple"/>
+                    <Button Grid.Row="2" FontSize="20" x:Name="AddNetConnection" Width="160" Height="40" Background="White" VerticalAlignment="Center" HorizontalAlignment="Right" Click="AddNetConnection_Click">Добавить связь</Button>
+                </Grid>
+            </Border>            
+        </Grid>
+        <Button Grid.Row="2" FontSize="20" x:Name="ShowNetButton" Width="170" Height="40" Background="White" VerticalAlignment="Center" HorizontalAlignment="Right" Click="ShowNetButton_Click">Показать сеть</Button>
+    </Grid>
+</Window>

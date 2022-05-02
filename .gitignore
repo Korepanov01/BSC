@@ -955,3 +955,5 @@ cython_debug/
 # End of https://www.toptal.com/developers/gitignore/api/python,pycharm
 /TreeBuilder/tree.json
 /TreeBuilder/.idea
+/NetDrawer/.idea
+/TreeDrawer/.idea
