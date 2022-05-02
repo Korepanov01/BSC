@@ -3,10 +3,172 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:OPDT_CW"
         mc:Ignorable="d"
         Title="MainWindow" ResizeMode="NoResize" Width="1280" Height="720">
-    <Grid>
-        
+    <Grid Margin="10" d:IsLocked="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="ВВЕДЕНИЕ ПАРАМЕТРОВ" VerticalAlignment="Center" FontSize="24" d:IsLocked="True"/>
+        <Grid Grid.Row="1" d:IsLocked="True">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Border BorderBrush="Black" BorderThickness="1" Padding="10" Margin="10" Grid.Column="0" Grid.RowSpan="2" d:IsLocked="True">
+                <Grid d:IsLocked="True">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0" d:IsLocked="True">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="30"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" FontSize="24" d:IsLocked="True">Финансы</TextBlock>
+
+                        <Grid Grid.Row="2" d:IsLocked="True">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="75"/>
+                                <ColumnDefinition Width="75"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox x:Name="FinanceParameterName" Grid.Column="0" FontSize="14" d:IsLocked="True"></TextBox>
+                            <TextBox x:Name="FinanceParameterValue" Grid.Column="1" FontSize="14" d:IsLocked="True"></TextBox>
+                            <Button x:Name="addFinanceParameterButton" Grid.Column="2" FontSize="14" Background="White" Click="AddFinanceParameterButton_Click" d:IsLocked="True">Добавить</Button>
+                            <Button x:Name="deleteFinanceParameterButton" Grid.Column="3" FontSize="14" Background="White" Click="DeleteFinanceParameterButton_Click" d:IsLocked="True">Удалить</Button>
+                        </Grid>
+
+                        <ListBox x:Name="FinanceParametersListBox" Grid.Row="1" FontSize="14" d:IsLocked="True"></ListBox>
+                    </Grid>
+
+                    <Grid Grid.Row="1" d:IsLocked="True">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="30"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" VerticalAlignment="Center" Text="Таблица с фин. параметрами" FontSize="24" TextAlignment="Center" d:IsLocked="True"/>
+                        <Border Grid.Row="1" BorderBrush="Black" BorderThickness="1" d:IsLocked="True">
+                            <DataGrid x:Name="ExcelTable" ItemsSource="{Binding}" IsReadOnly="True" d:IsLocked="True"/>
+                        </Border>
+                        <Button Grid.Row="2" Content="Выбрать файл" FontSize="14" Background="White" VerticalAlignment="Center" Click="ChooseFileButton_Click" d:IsLocked="True"/>
+                    </Grid>
+                </Grid>
+            </Border>
+
+
+            <Border BorderBrush="Black" BorderThickness="1" Padding="10" Margin="10" Grid.Row="0" Grid.Column="1" d:IsLocked="True">
+                <Grid d:IsLocked="True">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" FontSize="24" d:IsLocked="True">Клиенты</TextBlock>
+                    <Grid Grid.Row="2" d:IsLocked="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="75"/>
+                            <ColumnDefinition Width="75"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox x:Name="ClientsParameterName" Grid.Column="0" FontSize="14" d:IsLocked="True"></TextBox>
+                        <TextBox x:Name="ClientsParameterValue" Grid.Column="1" FontSize="14" d:IsLocked="True"></TextBox>
+                        <Button x:Name="addClientsParameterButton" Grid.Column="2" FontSize="14" Background="White" Click="AddClientsParameterButton_Click" d:IsLocked="True">Добавить</Button>
+                        <Button x:Name="deleteClientsParameterButton" Grid.Column="3" FontSize="14" Background="White" Click="DeleteClientsParameterButton_Click" d:IsLocked="True">Удалить</Button>
+                    </Grid>
+                    <ListBox x:Name="ClientsParametersListBox" Grid.Row="1" FontSize="14" d:IsLocked="True"></ListBox>
+                </Grid>
+            </Border>
+
+            <Border BorderBrush="Black" BorderThickness="1" Padding="10" Margin="10" Grid.Row="1" Grid.Column="2" d:IsLocked="True">
+                <Grid d:IsLocked="True">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" FontSize="24" d:IsLocked="True">Внутренние процессы</TextBlock>
+                    <Grid Grid.Row="2" d:IsLocked="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="75"/>
+                            <ColumnDefinition Width="75"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox x:Name="InternalParameterName" Grid.Column="0" FontSize="14" d:IsLocked="True"></TextBox>
+                        <TextBox x:Name="InternalParameterValue" Grid.Column="1" FontSize="14" d:IsLocked="True"></TextBox>
+                        <Button x:Name="addInternalParameterButton" Grid.Column="2" FontSize="14" Background="White" Click="AddInternalParameterButton_Click" d:IsLocked="True">Добавить</Button>
+                        <Button x:Name="InternalParameterButton" Grid.Column="3" FontSize="14" Background="White" Click="DeleteInternalParameterButton_Click" d:IsLocked="True">Удалить</Button>
+                    </Grid>
+                    <ListBox x:Name="InternalParametersListBox" Grid.Row="1" FontSize="14" d:IsLocked="True"></ListBox>
+                </Grid>
+            </Border>
+
+            <Border BorderBrush="Black" BorderThickness="1" Padding="10" Margin="10" Grid.Row="1" Grid.Column="1" d:IsLocked="True">
+                <Grid d:IsLocked="True">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" FontSize="24" d:IsLocked="True">Обучение и рост</TextBlock>
+                    <Grid Grid.Row="2" d:IsLocked="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="75"/>
+                            <ColumnDefinition Width="75"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox x:Name="EducationParameterName" Grid.Column="0" FontSize="14" d:IsLocked="True"></TextBox>
+                        <TextBox x:Name="EducationParameterValue" Grid.Column="1" FontSize="14" d:IsLocked="True"></TextBox>
+                        <Button x:Name="addEducationParameterButton" Grid.Column="2" FontSize="14" Background="White" Click="AddEducationParameterButton_Click" d:IsLocked="True">Добавить</Button>
+                        <Button x:Name="deleteEducationParameterButton" Grid.Column="3" FontSize="14" Background="White" Click="DeleteEducationParameterButton_Click" d:IsLocked="True">Удалить</Button>
+                    </Grid>
+                    <ListBox x:Name="EducationParametersListBox" Grid.Row="1" FontSize="14" d:IsLocked="True"></ListBox>
+                </Grid>
+            </Border>
+
+            <Border BorderBrush="Black" BorderThickness="1" Padding="10" Margin="10" Grid.Row="0" Grid.Column="2" d:IsLocked="True">
+                <Grid d:IsLocked="True">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" FontSize="24" d:IsLocked="True">ИТ</TextBlock>
+                    <Grid Grid.Row="2" d:IsLocked="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="75"/>
+                            <ColumnDefinition Width="75"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox x:Name="ItParameterName" Grid.Column="0" FontSize="14" d:IsLocked="True"></TextBox>
+                        <TextBox x:Name="ItParameterValue" Grid.Column="1" FontSize="14" d:IsLocked="True"></TextBox>
+                        <Button x:Name="addItParameterButton" Grid.Column="2" FontSize="14" Background="White" Click="AddItParameterButton_Click" Height="30" VerticalAlignment="Top" d:IsLocked="True">Добавить</Button>
+                        <Button x:Name="deleteItButton" Grid.Column="3" FontSize="14" Background="White" Click="DeleteItParameterButton_Click" Height="30" VerticalAlignment="Top" d:IsLocked="True">Удалить</Button>
+                    </Grid>
+                    <ListBox x:Name="ItParametersListBox" Grid.Row="1" FontSize="14" d:IsLocked="True"></ListBox>
+                </Grid>
+            </Border>
+
+        </Grid>
+        <Button Grid.Row="2" x:Name="NextButton" Content="Далее" FontSize="24" Background="White" VerticalAlignment="Center" HorizontalAlignment="Right" Height="36" Width="71" IsEnabled="True" Click="NextButton_Click" d:IsLocked="True"/>
     </Grid>
 </Window>
