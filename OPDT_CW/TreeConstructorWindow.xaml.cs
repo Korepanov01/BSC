@@ -142,34 +142,4 @@ public partial class TreeConstructorWindow
     {
         ((TreeViewItem)TreeTreeView.SelectedItem).IsSelected = false;
     }
-
-    private void SaveTreeButton_Click(object sender, RoutedEventArgs e)
-    {
-        var binaryFormatter = new BinaryFormatter();
-        using (var fileStream = new FileStream("tree.tree", FileMode.Create))
-        {
-            binaryFormatter.Serialize(fileStream, TreeTreeView.Items);
-        }
-    }
-
-    private void LoadTreeButton_Click(object sender, RoutedEventArgs e)
-    {
-        var fileDialog = new Microsoft.Win32.OpenFileDialog
-        {
-            Filter = "tree (*.tree)|*.tree"
-        };
-
-        var result = fileDialog.ShowDialog();
-
-        if (result is not true) return;
-
-        ItemCollection itemCollection; 
-
-        var binaryFormatter = new BinaryFormatter();
-        using(var fileStream = new FileStream(fileDialog.FileName, FileMode.Open))
-        {
-            itemCollection = (ItemCollection)binaryFormatter.Deserialize(fileStream);
-        }
-        TreeTreeView.ItemsSource = itemCollection;
-    }
 }

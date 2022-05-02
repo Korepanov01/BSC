@@ -7,11 +7,6 @@
         mc:Ignorable="d"
         Title="MainWindow" ResizeMode="NoResize" Width="1280" Height="720">
     <Grid>
-        <TextBlock HorizontalAlignment="Center" Margin="0,10,0,0" Text="ВЫБОР ТАБЛИЦЫ ДЛЯ РАСЧЕТА NPV" VerticalAlignment="Top" FontSize="24" TextAlignment="Center"/>
-        <Border BorderBrush="Black" BorderThickness="1"  Margin="10,47,10,51">
-            <DataGrid x:Name="ExcelTable" ItemsSource="{Binding}" IsReadOnly="True"/>
-        </Border>
-        <Button Content="Выбрать файл" FontSize="24" Background="White" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,86,10" Height="36" Width="159" Click="ChooseFileButton_Click"/>
-        <Button x:Name="NextButton" Content="Далее" FontSize="24" Background="White" VerticalAlignment="Bottom" HorizontalAlignment="Right"  Margin="10" Height="36" Width="71" IsEnabled="False" Click="NextButton_Click"/>
+        
     </Grid>
 </Window>

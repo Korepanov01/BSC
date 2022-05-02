@@ -8,7 +8,7 @@ namespace BSC
 {
     public enum ParameterType
     {
-        Npv,
+        It,
         Finance,
         Clients,
         Internal,

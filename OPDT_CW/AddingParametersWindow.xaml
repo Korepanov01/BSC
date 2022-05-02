@@ -21,31 +21,57 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Border BorderBrush="Black" BorderThickness="1" Padding="10" Margin="10" Grid.Row="0" Grid.Column="0">
+            <Border BorderBrush="Black" BorderThickness="1" Padding="10" Margin="10" Grid.Column="0" Grid.RowSpan="2">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="50"/>
                         <RowDefinition/>
-                        <RowDefinition Height="30"/>
+                        <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" FontSize="24">Финансы</TextBlock>
-                    <Grid Grid.Row="2">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="2*"/>
-                            <ColumnDefinition Width="2*"/>
-                            <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="1*"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBox x:Name="FinanceParameterName" Grid.Column="0" FontSize="14"></TextBox>
-                        <TextBox x:Name="FinanceParameterValue" Grid.Column="1" FontSize="14"></TextBox>
-                        <Button x:Name="addFinanceParameterButton" Grid.Column="2" FontSize="14" Background="White" Click="AddFinanceParameterButton_Click">Добавить</Button>
-                        <Button x:Name="deleteFinanceParameterButton" Grid.Column="3" FontSize="14" Background="White" Click="DeleteFinanceParameterButton_Click">Удалить</Button>
+                    
+                    <Grid Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="30"/>
+                        </Grid.RowDefinitions>
+                        
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" FontSize="24">Финансы</TextBlock>
+                        
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="75"/>
+                                <ColumnDefinition Width="75"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox x:Name="FinanceParameterName" Grid.Column="0" FontSize="14"></TextBox>
+                            <TextBox x:Name="FinanceParameterValue" Grid.Column="1" FontSize="14"></TextBox>
+                            <Button x:Name="addFinanceParameterButton" Grid.Column="2" FontSize="14" Background="White" Click="AddFinanceParameterButton_Click">Добавить</Button>
+                            <Button x:Name="deleteFinanceParameterButton" Grid.Column="3" FontSize="14" Background="White" Click="DeleteFinanceParameterButton_Click">Удалить</Button>
+                        </Grid>
+                        
+                        <ListBox x:Name="FinanceParametersListBox" Grid.Row="1" FontSize="14"></ListBox>
                     </Grid>
-                    <ListBox x:Name="FinanceParametersListBox" Grid.Row="1" FontSize="14"></ListBox>
+                    
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="30"/>
+                        </Grid.RowDefinitions>
+                        
+                        <TextBlock Grid.Row="0" VerticalAlignment="Center" Text="Таблица с фин. параметрами" FontSize="24" TextAlignment="Center"/>
+                        <Border Grid.Row="1" BorderBrush="Black" BorderThickness="1">
+                            <DataGrid x:Name="ExcelTable" ItemsSource="{Binding}" IsReadOnly="True"/>
+                        </Border>
+                        <Button Grid.Row="2" Content="Выбрать файл" FontSize="14" Background="White" VerticalAlignment="Center" Click="ChooseFileButton_Click"/>
+                    </Grid>                 
                 </Grid>
             </Border>
+     
 
             <Border BorderBrush="Black" BorderThickness="1" Padding="10" Margin="10" Grid.Row="0" Grid.Column="1">
                 <Grid>
@@ -57,10 +83,10 @@
                     <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" FontSize="24">Клиенты</TextBlock>
                     <Grid Grid.Row="2">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="2*"/>
-                            <ColumnDefinition Width="2*"/>
-                            <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="75"/>
+                            <ColumnDefinition Width="75"/>
                         </Grid.ColumnDefinitions>
                         <TextBox x:Name="ClientsParameterName" Grid.Column="0" FontSize="14"></TextBox>
                         <TextBox x:Name="ClientsParameterValue" Grid.Column="1" FontSize="14"></TextBox>
@@ -71,7 +97,7 @@
                 </Grid>
             </Border>
 
-            <Border BorderBrush="Black" BorderThickness="1" Padding="10" Margin="10" Grid.Row="1" Grid.Column="0">
+            <Border BorderBrush="Black" BorderThickness="1" Padding="10" Margin="10" Grid.Row="1" Grid.Column="2">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"/>
@@ -81,10 +107,10 @@
                     <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" FontSize="24">Внутренние процессы</TextBlock>
                     <Grid Grid.Row="2">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="2*"/>
-                            <ColumnDefinition Width="2*"/>
-                            <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="75"/>
+                            <ColumnDefinition Width="75"/>
                         </Grid.ColumnDefinitions>
                         <TextBox x:Name="InternalParameterName" Grid.Column="0" FontSize="14"></TextBox>
                         <TextBox x:Name="InternalParameterValue" Grid.Column="1" FontSize="14"></TextBox>
@@ -105,10 +131,10 @@
                     <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" FontSize="24">Обучение и рост</TextBlock>
                     <Grid Grid.Row="2">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="2*"/>
-                            <ColumnDefinition Width="2*"/>
-                            <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="75"/>
+                            <ColumnDefinition Width="75"/>
                         </Grid.ColumnDefinitions>
                         <TextBox x:Name="EducationParameterName" Grid.Column="0" FontSize="14"></TextBox>
                         <TextBox x:Name="EducationParameterValue" Grid.Column="1" FontSize="14"></TextBox>
@@ -118,6 +144,31 @@
                     <ListBox x:Name="EducationParametersListBox" Grid.Row="1" FontSize="14"></ListBox>
                 </Grid>
             </Border>
+
+            <Border BorderBrush="Black" BorderThickness="1" Padding="10" Margin="10" Grid.Row="0" Grid.Column="2">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" FontSize="24">ИТ</TextBlock>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="75"/>
+                            <ColumnDefinition Width="75"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox x:Name="ItParameterName" Grid.Column="0" FontSize="14"></TextBox>
+                        <TextBox x:Name="ItParameterValue" Grid.Column="1" FontSize="14"></TextBox>
+                        <Button x:Name="addItParameterButton" Grid.Column="2" FontSize="14" Background="White" Click="AddItParameterButton_Click" Height="30" VerticalAlignment="Top">Добавить</Button>
+                        <Button x:Name="deleteItButton" Grid.Column="3" FontSize="14" Background="White" Click="DeleteItParameterButton_Click" Height="30" VerticalAlignment="Top">Удалить</Button>
+                    </Grid>
+                    <ListBox x:Name="ItParametersListBox" Grid.Row="1" FontSize="14"></ListBox>
+                </Grid>
+            </Border>
+
         </Grid>
         <Button Grid.Row="2" x:Name="NextButton" Content="Далее" FontSize="24" Background="White" VerticalAlignment="Center" HorizontalAlignment="Right" Height="36" Width="71" IsEnabled="True" Click="NextButton_Click"/>
     </Grid>

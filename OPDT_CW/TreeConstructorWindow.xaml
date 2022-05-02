@@ -47,8 +47,8 @@
                 </Grid>
             </Border>
         </Grid>
-        <Button Grid.Row="2" FontSize="20" x:Name="SaveTreeButton" Width="170" Height="40" Background="White" VerticalAlignment="Center" HorizontalAlignment="Left" Click="SaveTreeButton_Click">Сохранить дерево</Button>
-        <Button Grid.Row="2" FontSize="20" x:Name="LoadTreeButton" Width="170" Height="40" Background="White" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="180, 0, 0, 0" Click="LoadTreeButton_Click">Загрузить дерево</Button>
+        <!--<Button Grid.Row="2" FontSize="20" x:Name="SaveTreeButton" Width="170" Height="40" Background="White" VerticalAlignment="Center" HorizontalAlignment="Left" Click="SaveTreeButton_Click">Сохранить дерево</Button>
+        <Button Grid.Row="2" FontSize="20" x:Name="LoadTreeButton" Width="170" Height="40" Background="White" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="180, 0, 0, 0" Click="LoadTreeButton_Click">Загрузить дерево</Button>-->
         <Button Grid.Row="2" FontSize="20" x:Name="ShowTreeButton" Width="170" Height="40" Background="White" VerticalAlignment="Center" HorizontalAlignment="Right" Click="ShowTreeButton_Click">Показать дерево</Button>
     </Grid>
 </Window>
